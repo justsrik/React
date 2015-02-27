@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hello React</title>
+    <script src="http://fb.me/react-0.12.2.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.12.2.js"></script>
+    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+  </head>
+  <body>
+    <div id="content"></div>
+    <script type="text/jsx">
+
+    var CommentBox = React.createClass({
+      render: function(){
+        return (
+          <div className="commentBox">
+          <h1>Comments</h1>
+          <CommentList />
+          <CommentForm />
+          </div>
+          );
+      }
+    });
+
+    var CommentList = React.createClass({
+      render: function(){
+        return (
+          <div className="commentList">
+          <Comment author="srikanth">This is my first comment</Comment>
+          <Comment author="srik">This is my first too</Comment>
+          </div>
+          )
+      }
+  });
+
+    var Comment = React.createClass({
+      render: function(){
+        return(
+          <div className="comment">
+          <h1 className="commentAuthor">{this.props.author}</h1>
+          {this.props.children}
+          </div>
+          );
+      }
+    });
+    var CommentForm = React.createClass({
+      render: function(){
+        return (<div className="commentForm">Hello from CommentForm</div>)
+      }
+    });
+    React.render(
+      <CommentBox />, 
+      document.getElementById('content')
+      );
+    </script>
+  </body>
+</html>
