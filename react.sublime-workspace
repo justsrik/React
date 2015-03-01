@@ -1,0 +1,525 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"class",
+				"className"
+			],
+			[
+				"comment",
+				"commentForm"
+			],
+			[
+				"Co",
+				"CommentList"
+			],
+			[
+				"commen",
+				"commentNodes"
+			],
+			[
+				"na",
+				"names"
+			],
+			[
+				"fu",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Hello React</title>\n    <script src=\"http://fb.me/react-0.12.2.js\"></script>\n    <script src=\"http://fb.me/JSXTransformer-0.12.2.js\"></script>\n    <script src=\"http://code.jquery.com/jquery-1.10.0.min.js\"></script>\n  </head>\n  <body>\n    <div id=\"content\"></div>\n    <script type=\"text/jsx\">\n\n    var CommentBox = React.createClass({\n      render: function(){\n        return (\n          <div className=\"commentBox\">\n          <h1>Comments</h1>\n          <CommentList />\n          <CommentForm />\n          </div>\n          );\n      }\n    });\n\n    var CommentList = React.createClass({\n      render: function(){\n        return (\n          <div className=\"commentList\">\n          <Comment author=\"srikanth\">This is my first comment</Comment>\n          <Comment author=\"srik\">This is my first too</Comment>\n          </div>\n          )\n      } \n  });\n\n    var Comment = React.createClass({\n      render: function(){\n        return(\n          <div className=\"comment\">\n          <h1 className=\"commentAuthor\">{this.props.author}</h1>\n          {this.props.children}\n          </div>\n          );\n      }\n    });\n    var CommentForm = React.createClass({\n      render: function(){\n        return (<div className=\"commentForm\">Hello from CommentForm</div>)\n      }\n    });\n    React.render(\n      <CommentBox />, \n      document.getElementById('content')\n      );\n    </script>\n  </body>\n</html>\n",
+			"file": "index.html",
+			"file_size": 1432,
+			"file_write_time": 130694974730000000,
+			"settings":
+			{
+				"buffer_size": 1433,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var RandomMessage = React.createClass({\n  getInitialState: function() {\n    return {message: 'Hello, Universe'};\n  },\n  _onClick: function() {\n    var messages = ['Hello, World', 'Hello, Planet', 'Hello, Universe'];\n    var randomMessage = messages[Math.floor((Math.random() * 3))];\n \n    this.setState({message: randomMessage});\n  },\n  render: function() {\n    return (\n      <div>\n        <MessageView message={this.state.message}/>\n        <p><input type=\"button\" onClick={this._onClick} value=\"Change Message\"/></p>\n      </div>\n    )\n  }\n});\n      var MessageView = React.createClass({\n  render: function() {\n    return (\n      <p>{this.props.message}</p>\n    )\n  }\n});\n      React.render(\n  <RandomMessage />,\n  document.getElementById('greeting-div')\n);",
+			"settings":
+			{
+				"buffer_size": 760,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var Greeting = React.createClass({\n        render: function() {\n          return (\n            <p>{this.props.message}</p>\n          )\n        }\n      });\n      setInterval(function(){\n        var messages = ['Hello, World', 'Hello, Planet', 'Hello, Universe'];\n        var randomMessage = messages[Math.floor((Math.random()*3))];\n\n        React.render(\n        <Greeting message={randomMessage}/>,\n        document.getElementById('greeting-div')\n      )\n      }, 2000);\n      \n\n\n\n      var Greeting = React.createClass({\n        render: function() {\n          return (\n            <p>Hello, Universe</p>\n          )\n        }\n      });\n      React.render(\n        <Greeting/>,\n        document.getElementById('greeting-div')\n      );",
+			"settings":
+			{
+				"buffer_size": 734,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "var Hello = React.createClass({\n    \n    getInitialState: function(){\n        return {name:\"HELLO WORLD\"};\n      },\n\n    _onClick: function(){\n      var names=\"hello world\";\n      this.setState({name:names});\n    },\n    \n    render: function(){\n      return(\n        <div>\n        <How name={this.state.name} />\n        <p><input type=\"button\" onClick={this._onClick} value=\"Change Message\"/></p>\n        </div>\n        );\n    }\n}); \n\nvar How = React.createClass({\n    render: function(){\n      return(\n        <p>{this.props.name}</p>\n        )\n    }\n});\n\nReact.render(<Hello />, document.getElementById('greeting-div'));",
+			"settings":
+			{
+				"buffer_size": 622,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>My First React Example</title>\n  </head>\n  <body>\n    <div id=\"content\"></div>\n    <script src=\"build/react.js\"></script>\n    <script src=\"build/JSXTransformer.js\"></script>\n    <script src=\"http://cdnjs.cloudflare.com/ajax/libs/showdown/0.3.1/showdown.min.js\"></script>\n    <script type=\"text/jsx\">\n    var data = [\n  {author: \"Pete Hunt\", text: \"This is one comment\"},\n  {author: \"Jordan Walke\", text: \"This is *another* comment\"}\n];\n      var CommentBox = React.createClass({\n    render: function() {\n    return (\n      <div className=\"commentBox\">\n        <h1>Comments</h1>\n        <CommentList data={this.props.data} />\n        <CommentForm />\n      </div>\n    );\n  }\n});\n      var CommentList = React.createClass({\n    render: function() {\n      var commentNodes = this.props.data.map(function (comment) {\n      return (\n        <Comment author={comment.author}>\n          {comment.text}\n        </Comment>\n      );\n    });\n    return (\n      <div className=\"commentList\">\n        {commentNodes}\n      </div>\n    );\n  }\n});\nvar converter = new Showdown.converter();\nvar Comment = React.createClass({\n  render: function() {\n    var rawMarkup = converter.makeHtml(this.props.children.toString());\n    return (\n      <div className=\"comment\">\n        <h2 className=\"commentAuthor\">\n          {this.props.author}\n        </h2>\n        <span dangerouslySetInnerHTML={{__html: rawMarkup}} />\n      </div>\n    );\n  }\n});\nvar CommentForm = React.createClass({\n    render: function() {\n    return (\n      <div className=\"commentForm\">\n        Hello, world! I am a CommentForm.\n      </div>\n    );\n  }\n});\n  React.render(\n    <CommentBox data={data}/>,\n    document.getElementById('content')\n  );\n    </script>\n  </body>\n</html>",
+			"settings":
+			{
+				"buffer_size": 1767,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 267.0,
+		"selected_items":
+		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"package con	in",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"disa",
+				"Package Control: Disable Package"
+			],
+			[
+				"package",
+				"Package Control: Disable Package"
+			],
+			[
+				"packa con i",
+				"Package Control: Install Package"
+			],
+			[
+				"package c",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 602.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/ssanga2/Documents/react-0.12.2",
+		"/Users/ssanga2/Documents/react-0.12.2/examples"
+	],
+	"file_history":
+	[
+		"/Users/ssanga2/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/ssanga2/Perforce/ssanga2_CQ/CMT/cq/ui/dev/qbinproduct/src/main/content/jcr_root/etc/designs/qbinproduct/assets/qbdt_sbg/.content.xml",
+		"/Users/ssanga2/Perforce/ssanga2_CQ/CMT/cq/ui/dev/harmony/src/main/content/jcr_root/etc/designs/harmony/assets/comparison/js/sticky.js",
+		"/Users/ssanga2/Perforce/ssanga2_CQ/CMT/cq/ui/dev/harmony/src/main/content/jcr_root/etc/designs/harmony/assets/utilities/comp_chart_2/js/comp_chart_2.js",
+		"/Users/ssanga2/Perforce/ssanga2_CQ/CMT/cq/ui/dev/harmony/src/main/content/jcr_root/etc/designs/harmony/assets/widgets/comp_chart_v2/js/comp_chart_v2.js",
+		"/Users/ssanga2/Perforce/ssanga2_CQ/CMT/cq/ui/dev/harmony/target/classes/etc/designs/harmony/assets/widgets/comp_chart_v2/js/comp_chart_v2.js",
+		"/Users/ssanga2/Downloads/filesChanged/jcr_root/etc/designs/qbinproduct/mustache_templates/qbinproduct/components/qbdt/__las_cta.html.mustache",
+		"/Users/ssanga2/Documents/CQ/author/license.properties"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/ssanga2/Perforce/ssanga2_CQ/CMT/cq/ui/dev"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"$UTILS",
+			"intuit.qbinproduct.qbdt_sbg",
+			"JobCategoryController",
+			"previewmode",
+			"inshowroompreview",
+			"showroom preview mode",
+			"showroom preview",
+			"inshowroom",
+			"cq.wcm",
+			"wcm mode",
+			"cq_mode"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1433,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								884,
+								884
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"codeintel": true,
+							"codeintel_database_dir": "~/.codeintel",
+							"codeintel_enabled_languages":
+							[
+								"JavaScript",
+								"SCSS",
+								"Python",
+								"HTML",
+								"Ruby",
+								"Python3",
+								"XML",
+								"Sass",
+								"HTML5",
+								"Perl",
+								"CSS",
+								"Twig",
+								"Less",
+								"Node.js",
+								"TemplateToolkit",
+								"PHP"
+							],
+							"codeintel_exclude_scopes_from_complete_triggers":
+							[
+								"comment"
+							],
+							"codeintel_language_settings":
+							{
+								"JavaScript":
+								{
+									"codeintel_max_recursive_dir_depth": 2,
+									"codeintel_scan_exclude_dir":
+									[
+										"/build/",
+										"/min/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": false,
+									"codeintel_selected_catalogs":
+									[
+										"jQuery"
+									]
+								},
+								"PHP":
+								{
+									"codeintel_max_recursive_dir_depth": 15,
+									"codeintel_scan_exclude_dir":
+									[
+										"/Applications/MAMP/bin/php/php5.5.3/"
+									],
+									"codeintel_scan_extra_dir":
+									[
+									],
+									"codeintel_scan_files_in_project": true,
+									"php": "/Applications/MAMP/bin/php/php5.5.3/bin/php"
+								},
+								"Python3":
+								{
+									"codeintel_scan_extra_dir":
+									[
+										"/Applications/Sublime Text.app/Contents/MacOS",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/arch",
+										"~/Library/Application Support/Sublime Text 3/Packages/SublimeCodeIntel/libs"
+									],
+									"codeintel_scan_files_in_project": true,
+									"codeintel_selected_catalogs":
+									[
+									],
+									"python3": "/usr/local/bin/python3.3"
+								}
+							},
+							"codeintel_live": true,
+							"codeintel_max_recursive_dir_depth": 10,
+							"codeintel_scan_exclude_dir":
+							[
+							],
+							"codeintel_scan_files_in_project": true,
+							"codeintel_selected_catalogs":
+							[
+							],
+							"codeintel_snippets": false,
+							"codeintel_syntax_map":
+							{
+								"Python Django": "Python"
+							},
+							"codeintel_tooltips": "popup",
+							"codeintel_word_completions": "buffer",
+							"open_with_edit": true,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 508.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 760,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								760,
+								760
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 734,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								636,
+								636
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 622,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								622,
+								622
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1767,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								16
+							]
+						],
+						"settings":
+						{
+							"auto_complete": false,
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "react.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 202.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
